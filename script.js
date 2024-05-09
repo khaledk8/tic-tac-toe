@@ -51,6 +51,7 @@ function printOnBoard (x, y, player = activePlayer) {
         switchPlayer()
     }
     winCondition()
+    drawCondition()
 
 }
 
@@ -90,4 +91,14 @@ function winCondition () {
 
 function winner (x, y) {
     console.log(`Player ${Gameboard.gameboard[x][y]} wins`)
+}
+
+function drawCondition () {
+    let zeroExist
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (Gameboard.gameboard[i][j] == 0) zeroExist = true
+        }
+    }
+    if (zeroExist) console.log("draw")
 }
