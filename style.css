@@ -201,3 +201,7 @@ button:hover {
     align-items: center;  
     
 }
+
+svg {
+    width: 30%;
+}
