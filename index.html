@@ -8,35 +8,41 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="row-one">
-            <p class="result">player X wins!</p>
-        </div>
-        <div class="row-two">
-            <div class="menu">
-                <button class="start">Start</button>
-                <button class="restart">Restart</button>
+    <main id="main">
+        <div class="container">
+            <div class="row-one">
+                <p class="result"></p>
             </div>
-            <div class="board-container">
-                <dive class="board" id="board">
-                    <div class="board-row-one">
-                        <div class="board-0-0"></div>
-                        <div class="board-0-1"></div>
-                        <div class="board-0-2"></div>
-                    </div>
-                    <div class="board-row-two">
-                        <div class="board-1-0"></div>
-                        <div class="board-1-1"></div>
-                        <div class="board-1-2"></div>
-                    </div>
-                    <div class="board-row-three">
-                        <div class="board-2-0"></div>
-                        <div class="board-2-1"></div>
-                        <div class="board-2-2"></div>
-                    </div>
-                </dive>
+            <div class="row-two">
+                <div class="menu">
+                    <button class="start">Start</button>
+                    <button class="restart">Restart</button>
+                </div>
+                <div class="board-container">
+                    <dive class="board" id="board">
+                        <div class="board-row-one">
+                            <div class="board-0-0"></div>
+                            <div class="board-0-1"></div>
+                            <div class="board-0-2"></div>
+                        </div>
+                        <div class="board-row-two">
+                            <div class="board-1-0"></div>
+                            <div class="board-1-1"></div>
+                            <div class="board-1-2"></div>
+                        </div>
+                        <div class="board-row-three">
+                            <div class="board-2-0"></div>
+                            <div class="board-2-1"></div>
+                            <div class="board-2-2"></div>
+                        </div>
+                    </dive>
+                </div>
             </div>
         </div>
+    </main>
+    <div class="popup">
+        <p class="results"></p>
+        <button class="results-button">Restart</button>
     </div>
 </body>
 </html>

@@ -1,10 +1,28 @@
 
-const result = document.querySelector('.result')
+const result = document.querySelector('.results')
 const startButton = document.querySelector('.start')
 const restartButton = document.querySelector('.restart')
+const mainDiv = document.getElementById('main')
+const popup = document.querySelector('.popup')
+const resultsButton = document.querySelector('.results-button')
+
+const squareZeroZero = document.querySelector(".board-0-0")
+const squareZeroOne = document.querySelector(".board-0-1")
+const squareZeroTwo = document.querySelector(".board-0-2")
+const squareOneZero = document.querySelector(".board-1-0")
+const squareOneOne = document.querySelector(".board-1-1")
+const squareOneTwo = document.querySelector(".board-1-2")
+const squareTwoZero = document.querySelector(".board-2-0")
+const squareTwoOne = document.querySelector(".board-2-1")
+const squareTwoTwo = document.querySelector(".board-2-2")
+
+
+
 
 startButton.addEventListener('click', () => gameController.startGame())
 restartButton.addEventListener('click', () => gameController.restartGame())
+resultsButton.addEventListener('click', () => popupButton())
+
 
 const svgX = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--noto" preserveAspectRatio="xMidYMid meet" fill="#000000">
 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -23,8 +41,8 @@ const svgO = `<svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmln
 let Gameboard = {}
 
 const players = {
-    playerX: {playerName: 'x', value: 'x', pic: svgX},
-    playerO: {playerName: 'o', value: 'o', pic: svgO}
+    playerX: {playerName: 'X', value: 'x', pic: svgX},
+    playerO: {playerName: 'O', value: 'o', pic: svgO}
 }
 
 let activePlayer
@@ -34,7 +52,6 @@ const gameController = (function () {
 
     const startGame = () => start()
     const restartGame = () => restart()
-    /* const players = () => definePlayers() */
     return {startGame, restartGame}
 })()
 
@@ -46,7 +63,6 @@ function start () {
     Gameboard.gameboard = array
     activePlayer = players.playerX
     defineBoard()
-    /* gameController.players() */
 }
 
 function restart () {
@@ -56,12 +72,8 @@ function restart () {
     Gameboard.gameboard = array
     activePlayer = players.playerX
     defineBoard()
-    /* gameController.players */
 }
 
-/* function definePlayers () {
-   
-} */
 
 function switchPlayer () {
     activePlayer == players.playerX ? activePlayer = players.playerO : activePlayer = players.playerX
@@ -118,8 +130,10 @@ function winner (x, y, player = activePlayer) {
     const divBoardChild = document.querySelector(`.board-${x}-${y}`)
     if (divBoardChild.innerHTML == svgX) {
     result.textContent = `Player ${players.playerX.playerName} Wins`
-    console.log('mmmmm')
     } else result.textContent = `Player ${players.playerO.playerName} Wins`
+    mainDiv.classList.add('blur')
+    popup.classList.add('active')
+    
 }
 
 function drawCondition () {
@@ -136,25 +150,32 @@ function drawCondition () {
 
 function defineBoard () {
 
-    const squareZeroZero = document.querySelector(".board-0-0")
-    const squareZeroOne = document.querySelector(".board-0-1")
-    const squareZeroTwo = document.querySelector(".board-0-2")
-    const squareOneZero = document.querySelector(".board-1-0")
-    const squareOneOne = document.querySelector(".board-1-1")
-    const squareOneTwo = document.querySelector(".board-1-2")
-    const squareTwoZero = document.querySelector(".board-2-0")
-    const squareTwoOne = document.querySelector(".board-2-1")
-    const squareTwoTwo = document.querySelector(".board-2-2")
+    squareZeroZero.addEventListener('click', () => {printOnBoard(0,0)})
+    squareZeroOne.addEventListener('click', () => {printOnBoard(0,1)})
+    squareZeroTwo.addEventListener('click', () => {printOnBoard(0,2)})
+    squareOneZero.addEventListener('click', () => {printOnBoard(1,0)})
+    squareOneOne.addEventListener('click', () => {printOnBoard(1,1)})
+    squareOneTwo.addEventListener('click', () => {printOnBoard(1,2)})
+    squareTwoZero.addEventListener('click', () => {printOnBoard(2,0)})
+    squareTwoOne.addEventListener('click', () => {printOnBoard(2,1)})
+    squareTwoTwo.addEventListener('click', () => {printOnBoard(2,2)})
 
-    squareZeroZero.addEventListener('click', () => printOnBoard(0,0))
-    squareZeroOne.addEventListener('click', () => printOnBoard(0,1))
-    squareZeroTwo.addEventListener('click', () => printOnBoard(0,2))
-    squareOneZero.addEventListener('click', () => printOnBoard(1,0))
-    squareOneOne.addEventListener('click', () => printOnBoard(1,1))
-    squareOneTwo.addEventListener('click', () => printOnBoard(1,2))
-    squareTwoZero.addEventListener('click', () => printOnBoard(2,0))
-    squareTwoOne.addEventListener('click', () => printOnBoard(2,1))
-    squareTwoTwo.addEventListener('click', () => printOnBoard(2,2))
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            Gameboard.gameboard[i][j] = 0
+            const divBoardChild = document.querySelector(`.board-${i}-${j}`)
+            divBoardChild.innerHTML = ''
+
+        }
+    }
+
+   
+}
+
+function popupButton () {
+    gameController.restartGame()
+    popup.classList.remove('active')
+    mainDiv.classList.remove('blur')
 }
 
 

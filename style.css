@@ -224,3 +224,38 @@ svg {
     font-size: 2.3rem;
     font-weight: bold;
 }
+
+.blur {
+    filter: blur(4px)
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-width: 95%;
+    background:rgba(0,113,147,0.7);
+    min-height: 75%;
+    padding: 25px;
+    display: none;
+}
+
+.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.results {
+    font-size: 5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.results-button {
+    width: 80%;
+    font-size: 5rem;
+}
